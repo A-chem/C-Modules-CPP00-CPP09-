@@ -70,6 +70,3 @@ By completing all modules, you gain strong foundations in:
 - Real-world problem solving with C++
 
 ---
-
-## 🛠️ How to Use
-Each module is inside its own folder:
