@@ -1,4 +1,4 @@
-# 42 C++ Modules (CPP00 → CPP09)
+## C++ Modules (CPP00 → CPP09)
 
 This repository contains my solutions for the **42 C++ Modules**, a set of projects designed to introduce Object-Oriented Programming (OOP), templates, and the Standard Template Library (STL).  
 
