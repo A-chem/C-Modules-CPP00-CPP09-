@@ -1,112 +1,137 @@
-# CPP-Module-00
-Core concepts (step-by-step)
+# C++ Module 00 – Overview & Guide  
 
-Project & compile rules
+## 📌 Core Concepts (Step-by-Step)
 
-Use c++ -Wall -Wextra -Werror and keep code valid under -std=c++98.
+### 🔹 Project & Compile Rules
+- Always compile with:
+  ```sh
+  c++ -Wall -Wextra -Werror -std=c++98
+  ```
+- Strict naming:
+  - Files: follow convention (`UpperCamelCase` for classes).
+  - Classes: `UpperCamelCase`.
+- No function implementations in headers (except **templates**).
+- Add **include guards**; each header must be self-sufficient.
 
-Follow strict file naming and class naming (UpperCamelCase).
+---
 
-Don’t put function implementations in headers (except templates).
+### 🔹 What You May / May Not Use
+✅ Allowed:  
+- C++ standard library (`std::string`, `iostream`, etc.).  
 
-Add include guards; each header must be self-sufficient. 
+🚫 Forbidden:  
+- `printf`, `malloc/free`.  
+- External libs (`C++11`, `Boost`, etc.).  
+- `using namespace ...`.  
+- `friend` (unless explicitly allowed).  
+- STL containers/algorithms (until later modules).  
 
-What you may / may not use
+---
 
-Prefer C++ stdlib (e.g., std::string, iostreams).
+### 🔹 Namespaces
+- Always reference explicitly:
+  ```cpp
+  std::cout << "Hello";
+  ```
+- Never use `using namespace std;`.
 
-Forbidden: printf, malloc/free, external libs (C++11/Boost), using namespace …, friend (unless explicitly allowed).
+---
 
-STL containers/algorithms are off-limits until later modules. 
+### 🔹 Classes & Encapsulation
+- Design classes with **private data** and **public methods**.  
+- Use **real classes** (`PhoneBook`, `Contact`) → no `struct`, no globals.  
 
-Namespaces
+---
 
-You’ll reference names with std:: instead of using namespace std; (forbidden here). Keeps the global scope clean. 
+### 🔹 Member Functions
+- Declarations → `.hpp`  
+- Definitions → `.cpp`  
+- No function bodies in headers (except templates).  
 
-Classes & objects + encapsulation
+---
 
-Design classes with private data and public methods (encapsulation).
+### 🔹 Initialization
+- Use **constructors** to initialize members.  
+- Prefer **initialization lists** for deterministic setup.  
 
-Instantiate PhoneBook and Contact as real class objects (not structs, not globals). 
+---
 
-Member functions
+### 🔹 `static` & `const` Basics
+- `static` → belongs to class, not object.  
+- `const` methods → promise not to change object state.  
+- `const` data → immutable once set.  
 
-Put declarations in .hpp and definitions in .cpp (no method bodies in headers, except templates). This enforces separation and correct builds. 
+---
 
-Initialization (constructors / init lists)
+### 🔹 Standard I/O Streams
+- Use `std::cout` / `std::cin`.  
+- Format tables with `<iomanip>` (`std::setw`, right alignment).  
 
-Initialize members in constructors; prefer initialization lists for clean, deterministic setup (this habit starts now and matters more in later modules).
+---
 
-static & const basics
+### 🔹 Memory Model Awareness
+- No leaks.  
+- Understand object lifetime.  
+- **ex01** → no dynamic allocation allowed.  
 
-static members/funcs belong to the class, not the object (e.g., counters).
+---
 
-const methods promise not to modify object state; const data prevents unintended changes.
+## 📝 Exercises
 
-Standard I/O streams
+### **ex00 – Megaphone**
+**Goal:** Print CLI arguments in uppercase.  
 
-Use std::cout/std::cin for printing and reading; format output with <iomanip> (e.g., std::setw, right-alignment). 
+Steps:  
+1. If no args → print `* LOUD AND UNBEARABLE FEEDBACK NOISE *`.  
+2. Concatenate args (or print one by one).  
+3. Convert each char → uppercase (`std::toupper`).  
+4. Output via `std::cout`.  
 
-Memory model awareness
+---
 
-Avoid leaks; understand object lifetime. (In ex01, you’re told not to use dynamic allocation at all.) 
+### **ex01 – My Awesome PhoneBook**
+**Goal:** Build a simple CLI phonebook.  
 
-Apply the concepts per exercise
-ex00 — Megaphone
+#### Classes
+- `Contact`  
+  - Private fields: `firstName`, `lastName`, `nickname`, `phoneNumber`, `darkestSecret`.  
+- `PhoneBook`  
+  - Fixed array of 8 `Contact`s (circular buffer).  
 
-Goal: print all CLI arguments in UPPERCASE; if no args, print the loud noise line.
-Steps
+#### Commands
+- **ADD** → ask for fields, store in next slot, reject empty input.  
+- **SEARCH** →  
+  - Print table (index | first | last | nick).  
+  - Column width = 10 (truncate long strings → `9 chars + '.'`).  
+  - Ask for index, validate, display contact details.  
+- **EXIT** → quit, data lost (no persistence).  
 
-Read argv (if argc == 1, print * LOUD AND UNBEARABLE FEEDBACK NOISE *).
+#### Constraints
+- No dynamic allocation.  
+- Encapsulation enforced.  
+- Interaction only via methods.  
 
-Concatenate arguments with spaces (or print one by one).
+---
 
-Convert each char to uppercase and print via std::cout << ... << '\n'.
+### **ex02 – The Job Of Your Dreams (optional)**
+**Goal:** Rebuild `Account.cpp` so tests match the log output.  
 
-Keep everything C++-style (no printf). 
+Steps:  
+1. Read `Account.hpp` → understand API/signatures.  
+2. Implement in `Account.cpp` based on behaviors seen in `tests.cpp`.  
+3. Compare output with reference log (`timestamps may differ`).  
+4. Destructor print order may vary → acceptable.  
 
-ex01 — My Awesome PhoneBook
+⚠️ Not mandatory, but great practice in reverse engineering from headers & tests.  
 
-Goal: tiny CLI phonebook with ADD, SEARCH, EXIT.
-Steps
+---
 
-Design classes
-
-class Contact with private fields: first name, last name, nickname, phone number, darkest secret.
-
-class PhoneBook holding a fixed array of 8 Contact objects (no new/vector). Keep a circular index to overwrite the oldest when full. 
-
-ADD
-
-Prompt for each field; reject empty inputs; store in the next slot (wrap at 8). 
-
-SEARCH (table view)
-
-Print a 4-column table: index | first | last | nick.
-
-Each column width = 10, right-aligned; truncate long strings to 9 chars + .. Use <iomanip> helpers. 
-
-Ask for an index; if invalid, handle gracefully; else print all fields (one per line). 
-
-EXIT
-
-Quit; data is ephemeral (no persistence). 
-
-Constraints
-
-No dynamic allocation; keep class data private; interact through methods. 
-
-ex02 — The Job Of Your Dreams (optional)
-
-Goal: rebuild Account.cpp so that tests match the provided log output; you’re given Account.hpp, tests.cpp, and a log file.
-Steps
-
-Read Account.hpp to know the exact API and signatures.
-
-Implement every method in Account.cpp to match behaviors inferred from tests.cpp and the log (timestamps will naturally differ).
-
-Expect destructor print order to possibly vary by platform—this is acceptable.
-
-Build with the module rules and confirm your output matches the reference log (except time).
-
-Note: not mandatory to pass Module 00, but great practice for reading headers/tests and re-implementing behavior.
+## 🚀 Summary
+By the end of **Module 00**, you’ll be comfortable with:  
+- Strict compile rules (`-Wall -Wextra -Werror -std=c++98`).  
+- Proper header/implementation separation.  
+- Encapsulation & class design.  
+- Constructors & init lists.  
+- `static` / `const` basics.  
+- CLI interaction via `std::cin` / `std::cout`.  
+- Writing small but complete C++ programs without dynamic allocation.  
