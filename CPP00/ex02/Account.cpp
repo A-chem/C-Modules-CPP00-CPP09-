@@ -6,7 +6,7 @@
 /*   By: achemlal <achemlal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 13:20:16 by achemlal          #+#    #+#             */
-/*   Updated: 2025/08/04 16:12:50 by achemlal         ###   ########.fr       */
+/*   Updated: 2025/09/11 21:09:27 by achemlal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ Account::Account( int initial_deposit )
     _amount = initial_deposit;
     _nbDeposits = 0;
     _nbWithdrawals = 0;
-    _totalAmount += initial_deposit;
+    _totalAmount += initial_deposit; 
     _displayTimestamp();
 	std::cout <<"index:"<<_accountIndex
         << ";amount:"<<_amount

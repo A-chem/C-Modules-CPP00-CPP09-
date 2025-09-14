@@ -5,25 +5,22 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: achemlal <achemlal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/18 17:50:46 by achemlal          #+#    #+#             */
-/*   Updated: 2025/09/12 19:46:35 by achemlal         ###   ########.fr       */
+/*   Created: 2025/09/14 10:31:33 by achemlal          #+#    #+#             */
+/*   Updated: 2025/09/14 12:24:48 by achemlal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Zombie.hpp"
+#include "Harl.hpp"
 
-int main ()
-{
-    Zombie *zombie;
-    int N = 5;
-
-    zombie = zombieHorde(N, "Zombie");
-    for (int i = 0; i < N; i++)
-	{
-       std::cout << "Index " << i << ": ";
-	   zombie[i].announce();
+int main(int ac, char *av[]) {
+    if (ac != 2) {
+        std::cout << "Usage: " << av[0] << " <LEVEL>\n";
+        std::cout << "LEVEL can be: DEBUG, INFO, WARNING, ERROR\n";
+        return 1;
     }
 
-	delete[] zombie;
-	return (0);
+    Harl harl;
+    harl.complain(av[1]);
+
+    return 0;
 }

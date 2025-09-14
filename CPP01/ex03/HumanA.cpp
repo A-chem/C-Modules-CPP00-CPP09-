@@ -1,29 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   HumanA.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: achemlal <achemlal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/18 17:50:46 by achemlal          #+#    #+#             */
-/*   Updated: 2025/09/12 19:46:35 by achemlal         ###   ########.fr       */
+/*   Created: 2025/09/12 20:12:30 by achemlal          #+#    #+#             */
+/*   Updated: 2025/09/13 14:29:51 by achemlal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Zombie.hpp"
+#include "HumanA.hpp"
 
-int main ()
+HumanA::HumanA(const std::string &n, Weapon &w) : name(n), Wpn(w){};
+
+HumanA::~HumanA(){};
+
+void HumanA::attack() const
 {
-    Zombie *zombie;
-    int N = 5;
-
-    zombie = zombieHorde(N, "Zombie");
-    for (int i = 0; i < N; i++)
-	{
-       std::cout << "Index " << i << ": ";
-	   zombie[i].announce();
-    }
-
-	delete[] zombie;
-	return (0);
+    std::cout << name << " attacks with their " << Wpn.getType() << std::endl;
 }

@@ -5,25 +5,29 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: achemlal <achemlal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/18 17:50:46 by achemlal          #+#    #+#             */
-/*   Updated: 2025/09/12 19:46:35 by achemlal         ###   ########.fr       */
+/*   Created: 2025/07/28 09:34:49 by achemlal          #+#    #+#             */
+/*   Updated: 2025/09/14 14:07:39 by achemlal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Zombie.hpp"
+#include "PhoneBook.hpp"
 
-int main ()
+int  main()
 {
-    Zombie *zombie;
-    int N = 5;
-
-    zombie = zombieHorde(N, "Zombie");
-    for (int i = 0; i < N; i++)
+	PhoneBook	pb;
+	std::string	cmd;
+	
+	while(true)
 	{
-       std::cout << "Index " << i << ": ";
-	   zombie[i].announce();
-    }
-
-	delete[] zombie;
+		std::cout << "Enter command (ADD, SEARCH, EXIT): ";
+		if (!std::getline(std::cin, cmd))
+			break ;
+		if (cmd == "ADD")
+            pb.addContact();
+        else if (cmd == "SEARCH")
+             pb.searchContact();
+        else if (cmd == "EXIT")
+            break;
+	}
 	return (0);
 }

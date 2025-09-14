@@ -1,33 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Weapon.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: achemlal <achemlal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/28 09:34:49 by achemlal          #+#    #+#             */
-/*   Updated: 2025/08/05 17:45:35 by achemlal         ###   ########.fr       */
+/*   Created: 2025/09/12 20:07:07 by achemlal          #+#    #+#             */
+/*   Updated: 2025/09/13 14:33:26 by achemlal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/PhoneBook.hpp"
+#include "Weapon.hpp"
 
-int  main()
+Weapon::Weapon(const std::string &t) : type(t){};
+
+Weapon::~Weapon(){};
+
+void Weapon::setType(const std::string &newType)
 {
-	PhoneBook	pb;
-	std::string	cmd;
-	
-	while(true)
-	{
-		std::cout << "Enter command (ADD, SEARCH, EXIT): ";
-		if (!std::getline(std::cin, cmd))
-			break ;
-		if (cmd == "ADD")
-            pb.addContact();
-        else if (cmd == "SEARCH")
-             pb.searchContact();
-        else if (cmd == "EXIT")
-            break;
-	}
-	return (0);
+    type = newType;
+}
+const std::string& Weapon::getType(void) const
+{
+    return (type);
 }

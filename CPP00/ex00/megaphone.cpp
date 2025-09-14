@@ -6,7 +6,7 @@
 /*   By: achemlal <achemlal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 17:48:31 by achemlal          #+#    #+#             */
-/*   Updated: 2025/08/05 17:48:32 by achemlal         ###   ########.fr       */
+/*   Updated: 2025/09/14 13:53:00 by achemlal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int main (int ac, char **av)
     int i;
     int j;
 
-    i = 0;
+    i = 1;
     if(ac > 1)
     {
         while(av[i])

@@ -2,11 +2,11 @@
 #        SETTINGS
 # =======================
 
-NAME     = phonebook
+NAME     = Harl
 CXX      = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
-SRCS     = main.cpp Contact.cpp PhoneBook.cpp
+SRCS     = main.cpp Harl.cpp
 OBJS     = $(SRCS:.cpp=.o)
 
 # =======================
@@ -24,12 +24,12 @@ RESET    = \033[0m
 
 all: $(NAME)
 
-$(NAME): $(OBJS) 
+$(NAME): $(OBJS)
 	@echo "$(YELLOW)Compiling...$(RESET)"
 	@$(CXX) $(CXXFLAGS) -o $(NAME) $(OBJS)
 	@echo "$(GREEN)Build complete: $(NAME)$(RESET)"
 
-%.o: %.cpp PhoneBook.hpp Contact.hpp
+%.o: %.cpp Zombie.hpp
 	@echo "$(YELLOW)Compiling $<...$(RESET)"
 	@$(CXX) $(CXXFLAGS) -c $< -o $@
 

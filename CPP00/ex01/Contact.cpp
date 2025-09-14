@@ -6,11 +6,11 @@
 /*   By: achemlal <achemlal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 09:33:03 by achemlal          #+#    #+#             */
-/*   Updated: 2025/08/05 15:55:43 by achemlal         ###   ########.fr       */
+/*   Updated: 2025/09/14 14:06:30 by achemlal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/Contact.hpp"
+#include "Contact.hpp"
 
 static std::string getInput(std::string prompt)
 {

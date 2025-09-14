@@ -1,137 +1,178 @@
-# C++ Module 00 – Overview & Guide  
+# CPP-Module-00
+🔹 Step 1: Understand the Goal
 
-## 📌 Core Concepts (Step-by-Step)
+. This module is your first step in C++.
 
-### 🔹 Project & Compile Rules
-- Always compile with:
-  ```sh
-  c++ -Wall -Wextra -Werror -std=c++98
-  ```
-- Strict naming:
-  - Files: follow convention (`UpperCamelCase` for classes).
-  - Classes: `UpperCamelCase`.
-- No function implementations in headers (except **templates**).
-- Add **include guards**; each header must be self-sufficient.
+. It's based on C++98 standard (not modern C++11 or later).
 
----
+. You’ll learn the basics of:
 
-### 🔹 What You May / May Not Use
-✅ Allowed:  
-- C++ standard library (`std::string`, `iostream`, etc.).  
+    . Namespaces
+    
+    . Classes
+    
+    . Member functions
+    
+    . Static & const keywords
+    
+    . Initialization lists
+    
+    . stdio streams (std::cout, std::cin, etc.)
+    
 
-🚫 Forbidden:  
-- `printf`, `malloc/free`.  
-- External libs (`C++11`, `Boost`, etc.).  
-- `using namespace ...`.  
-- `friend` (unless explicitly allowed).  
-- STL containers/algorithms (until later modules).  
+🔹 Step 2: Follow General Rules
 
----
+. Compilation Flags: Always compile using:
 
-### 🔹 Namespaces
-- Always reference explicitly:
-  ```cpp
-  std::cout << "Hello";
-  ```
-- Never use `using namespace std;`.
+    ** c++ -Wall -Wextra -Werror -std=c++98 ** 
+    
+. Naming & Formatting:
 
----
+    . Directory names: ex00, ex01, etc.
+    
+    . Class name: UpperCamelCase (e.g. MyClass.hpp)
+    
+    . Headers must have include guards.
+    
+    . No C functions like printf, malloc, free.
+    
+. Don't use:
 
-### 🔹 Classes & Encapsulation
-- Design classes with **private data** and **public methods**.  
-- Use **real classes** (`PhoneBook`, `Contact`) → no `struct`, no globals.  
+    . using namespace std;
+    
+    . friend keyword
+    
+    . STL containers or algorithms (like vector, map, etc.)
+    
 
----
+🔸 🔸 Exercise 00: Megaphone 
 
-### 🔹 Member Functions
-- Declarations → `.hpp`  
-- Definitions → `.cpp`  
-- No function bodies in headers (except templates).  
+📝 Objective
 
----
+Write a C++ program that:
 
-### 🔹 Initialization
-- Use **constructors** to initialize members.  
-- Prefer **initialization lists** for deterministic setup.  
+    1. Takes one or more command-line arguments (strings)
+    
+    2. Converts them to uppercase
+    
+    3. Prints the result to standard output
+    
 
----
+If no arguments are given, print:
 
-### 🔹 `static` & `const` Basics
-- `static` → belongs to class, not object.  
-- `const` methods → promise not to change object state.  
-- `const` data → immutable once set.  
+    ** LOUD AND UNBEARABLE FEEDBACK NOISE **
 
----
+📂 Turn-in Requirements
 
-### 🔹 Standard I/O Streams
-- Use `std::cout` / `std::cin`.  
-- Format tables with `<iomanip>` (`std::setw`, right alignment).  
+. Folder: ex00/
 
----
+. Files to submit:
 
-### 🔹 Memory Model Awareness
-- No leaks.  
-- Understand object lifetime.  
-- **ex01** → no dynamic allocation allowed.  
+    . megaphone.cpp
+    
+    . Makefile
+    
 
----
+✅ Expected Behavior
 
-## 📝 Exercises
+1. If arguments are passed:
+   
+    $> ./megaphone Hello there!
+   
+    → HELLO THERE!
+   
+4. If no arguments are passed:
+   
+    $> ./megaphone
+   
+    → * LOUD AND UNBEARABLE FEEDBACK NOISE *
 
-### **ex00 – Megaphone**
-**Goal:** Print CLI arguments in uppercase.  
 
-Steps:  
-1. If no args → print `* LOUD AND UNBEARABLE FEEDBACK NOISE *`.  
-2. Concatenate args (or print one by one).  
-3. Convert each char → uppercase (`std::toupper`).  
-4. Output via `std::cout`.  
+🔸 Exercise 01: My Awesome PhoneBook
 
----
+📂 Turn-in Folder
 
-### **ex01 – My Awesome PhoneBook**
-**Goal:** Build a simple CLI phonebook.  
+. Directory: ex01/
 
-#### Classes
-- `Contact`  
-  - Private fields: `firstName`, `lastName`, `nickname`, `phoneNumber`, `darkestSecret`.  
-- `PhoneBook`  
-  - Fixed array of 8 `Contact`s (circular buffer).  
+. Files:
 
-#### Commands
-- **ADD** → ask for fields, store in next slot, reject empty input.  
-- **SEARCH** →  
-  - Print table (index | first | last | nick).  
-  - Column width = 10 (truncate long strings → `9 chars + '.'`).  
-  - Ask for index, validate, display contact details.  
-- **EXIT** → quit, data lost (no persistence).  
+    . Makefile
+    
+    . One or more .cpp files (for logic)
+    
+    . hpp (or .h) headers (for class declarations)
+    
 
-#### Constraints
-- No dynamic allocation.  
-- Encapsulation enforced.  
-- Interaction only via methods.  
+🧠 Goal of This Project
 
----
+You must build a command-line phonebook application using:
 
-### **ex02 – The Job Of Your Dreams (optional)**
-**Goal:** Rebuild `Account.cpp` so tests match the log output.  
+. Two classes: PhoneBook and Contact
 
-Steps:  
-1. Read `Account.hpp` → understand API/signatures.  
-2. Implement in `Account.cpp` based on behaviors seen in `tests.cpp`.  
-3. Compare output with reference log (`timestamps may differ`).  
-4. Destructor print order may vary → acceptable.  
+. A maximum of 8 contacts
 
-⚠️ Not mandatory, but great practice in reverse engineering from headers & tests.  
+. A simple text-based user interface to:
 
----
+    . ADD a contact
+    
+    . SEARCH for a contact by index
+    
+    . EXIT to quit
+    
 
-## 🚀 Summary
-By the end of **Module 00**, you’ll be comfortable with:  
-- Strict compile rules (`-Wall -Wextra -Werror -std=c++98`).  
-- Proper header/implementation separation.  
-- Encapsulation & class design.  
-- Constructors & init lists.  
-- `static` / `const` basics.  
-- CLI interaction via `std::cin` / `std::cout`.  
-- Writing small but complete C++ programs without dynamic allocation.  
+🔹 Step 1: Understand the Program Flow
+
+When the program runs:
+
+. It starts empty
+
+. It enters a loop asking for one of these commands: ADD, SEARCH, or EXIT
+
+. Based on the command:
+
+    . ADD → prompts user to fill 5 fields
+    
+    . SEARCH → displays a table and asks for an index to show contact
+    
+    . EXIT → exits program
+
+🔹 Step 2: Create Class Contact
+
+This class stores one contact's data:
+
+. Private fields (because they’re internal):
+
+    std::string firstName;
+    
+    std::string lastName;
+    
+    std::string nickname;
+    
+    std::string phoneNumber;
+    
+    std::string darkestSecret;
+
+. Public methods:
+
+    void setInfo(); → Ask the user to input each field
+    
+    void displayShort(int index);  → Show one-line summary for search
+    
+    void displayFull(); → Print all 5 fields in full
+    
+    bool isEmpty() const; → Help to check if the contact is filled
+
+🔹 Step 3: Create Class PhoneBook
+
+. This class stores 8 contacts and manages indexing.
+
+. Private fields:
+    Contact contacts[8];
+    
+    int totalContacts;
+
+. Public methods:
+
+    void addContact(); -> adds a new contact. If totalContacts == 8, overwrite the oldest one (using circular buffer).
+    
+    void searchContact(); -> display the summary table and ask the user to enter a valid index.

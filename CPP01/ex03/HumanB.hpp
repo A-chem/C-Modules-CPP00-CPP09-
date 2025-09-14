@@ -1,29 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   HumanB.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: achemlal <achemlal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/18 17:50:46 by achemlal          #+#    #+#             */
-/*   Updated: 2025/09/12 19:46:35 by achemlal         ###   ########.fr       */
+/*   Created: 2025/09/12 20:27:17 by achemlal          #+#    #+#             */
+/*   Updated: 2025/09/13 14:30:37 by achemlal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Zombie.hpp"
+#ifndef HUMANB_HPP
+#define HUMANB_HPP
 
-int main ()
+#include <string>
+#include <iostream>
+#include "Weapon.hpp"
+
+class HumanB
 {
-    Zombie *zombie;
-    int N = 5;
+    private:
+        std::string name;
+        Weapon *Wpn;
+    public:
+        HumanB(const std::string &n);
+        ~HumanB();
+        void attack();
+        void setWeapon(Weapon &w);
+};
 
-    zombie = zombieHorde(N, "Zombie");
-    for (int i = 0; i < N; i++)
-	{
-       std::cout << "Index " << i << ": ";
-	   zombie[i].announce();
-    }
 
-	delete[] zombie;
-	return (0);
-}
+#endif 

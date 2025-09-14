@@ -5,25 +5,22 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: achemlal <achemlal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/18 17:50:46 by achemlal          #+#    #+#             */
-/*   Updated: 2025/09/12 19:46:35 by achemlal         ###   ########.fr       */
+/*   Created: 2025/09/14 10:07:00 by achemlal          #+#    #+#             */
+/*   Updated: 2025/09/14 12:29:01 by achemlal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Zombie.hpp"
+#include "Harl.hpp"
 
 int main ()
 {
-    Zombie *zombie;
-    int N = 5;
+    Harl harl;
+    std::string level;
 
-    zombie = zombieHorde(N, "Zombie");
-    for (int i = 0; i < N; i++)
-	{
-       std::cout << "Index " << i << ": ";
-	   zombie[i].announce();
-    }
-
-	delete[] zombie;
-	return (0);
+    std::cout << "Enter a complaint level (DEBUG, INFO, WARNING, ERROR):\n";
+    std::cout<<"> ";
+    std::getline(std::cin, level);
+    if (std::cin.eof()) 
+        std::cout << "\n[EOF detected — exiting program.]\n";
+    harl.complain(level);
 }
