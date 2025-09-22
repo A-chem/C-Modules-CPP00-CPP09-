@@ -6,7 +6,7 @@
 /*   By: achemlal <achemlal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 19:48:01 by achemlal          #+#    #+#             */
-/*   Updated: 2025/08/07 17:42:07 by achemlal         ###   ########.fr       */
+/*   Updated: 2025/09/20 09:37:43 by achemlal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ class Zombie
     private:
     std::string name;
     public:
-    Zombie(std::string name);
+    Zombie(std::string &name);
     ~Zombie();
-    void announce( void );
+    void announce(void); 
 };
 
  Zombie*    newZombie( std::string name );

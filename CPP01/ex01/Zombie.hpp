@@ -6,7 +6,7 @@
 /*   By: achemlal <achemlal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/18 16:28:47 by achemlal          #+#    #+#             */
-/*   Updated: 2025/08/18 17:49:15 by achemlal         ###   ########.fr       */
+/*   Updated: 2025/09/20 11:09:17 by achemlal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,10 @@ public:
     Zombie();
     Zombie(std::string name);
     ~Zombie();
-    void announce();
+    void announce(void);
 };
 
 Zombie* newZombie( std::string name );
 Zombie* zombieHorde( int N, std::string name );
-
-
 
 #endif

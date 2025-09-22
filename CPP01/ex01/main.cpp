@@ -6,7 +6,7 @@
 /*   By: achemlal <achemlal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/18 17:50:46 by achemlal          #+#    #+#             */
-/*   Updated: 2025/09/12 19:46:35 by achemlal         ###   ########.fr       */
+/*   Updated: 2025/09/20 10:18:52 by achemlal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int main ()
 {
     Zombie *zombie;
-    int N = 5;
+    int N = -1;
 
     zombie = zombieHorde(N, "Zombie");
     for (int i = 0; i < N; i++)

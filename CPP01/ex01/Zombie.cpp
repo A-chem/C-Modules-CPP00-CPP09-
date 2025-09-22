@@ -6,7 +6,7 @@
 /*   By: achemlal <achemlal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/18 16:31:24 by achemlal          #+#    #+#             */
-/*   Updated: 2025/08/18 17:49:36 by achemlal         ###   ########.fr       */
+/*   Updated: 2025/09/20 09:37:49 by achemlal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,15 @@ Zombie::Zombie(){};
 
 Zombie::Zombie(std::string n) : name(n)
 {
-    std::cout<< name << " is born 🧟‍♂️" << std::endl;
+    std::cout<< name << " is born " << std::endl;
 }
 
 Zombie::~Zombie()
 {
-    std::cout << name << " is destroyed 💀" << std::endl;
+    std::cout << name << " is destroyed " << std::endl;
 }
 
-void Zombie::announce( void )
+void Zombie::announce(void)
 {
     std::cout<< name <<": BraiiiiiiinnnzzzZ..."<<std::endl;
 }

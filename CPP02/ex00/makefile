@@ -2,11 +2,11 @@
 #        SETTINGS
 # =======================
 
-NAME     = zombieHorde
+NAME     = Fixed
 CXX      = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
-SRCS     = main.cpp Zombiehorde.cpp Zombie.cpp
+SRCS     = main.cpp Fixed.cpp
 OBJS     = $(SRCS:.cpp=.o)
 
 # =======================
@@ -29,7 +29,7 @@ $(NAME): $(OBJS)
 	@$(CXX) $(CXXFLAGS) -o $(NAME) $(OBJS)
 	@echo "$(GREEN)Build complete: $(NAME)$(RESET)"
 
-%.o: %.cpp Zombie.hpp
+%.o: %.cpp
 	@echo "$(YELLOW)Compiling $<...$(RESET)"
 	@$(CXX) $(CXXFLAGS) -c $< -o $@
 

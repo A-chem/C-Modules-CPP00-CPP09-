@@ -2,7 +2,7 @@
 #        SETTINGS
 # =======================
 
-NAME     = sed_loser
+NAME     = handleFile 
 CXX      = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
@@ -29,7 +29,7 @@ $(NAME): $(OBJS)
 	@$(CXX) $(CXXFLAGS) -o $(NAME) $(OBJS)
 	@echo "$(GREEN)Build complete: $(NAME)$(RESET)"
 
-%.o: %.cpp Zombie.hpp
+%.o: %.cpp
 	@echo "$(YELLOW)Compiling $<...$(RESET)"
 	@$(CXX) $(CXXFLAGS) -c $< -o $@
 
