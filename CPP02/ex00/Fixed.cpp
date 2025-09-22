@@ -6,23 +6,22 @@
 /*   By: achemlal <achemlal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/15 10:38:30 by achemlal          #+#    #+#             */
-/*   Updated: 2025/09/16 11:36:10 by achemlal         ###   ########.fr       */
+/*   Updated: 2025/09/22 09:41:21 by achemlal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
 
-const int Fixed::_fracBits = 8;
 
 Fixed::Fixed() : fixed_point(0)
 {
     std::cout<<"Default constructor called"<<std::endl;
 };
 
-Fixed::Fixed(const Fixed& ether)
+Fixed::Fixed(const Fixed& other)
 {
     std::cout<<"Copy constructor called"<<std::endl;
-    *this = ether;
+    *this = other;
 }
 
 Fixed& Fixed::operator=(const Fixed& ether){

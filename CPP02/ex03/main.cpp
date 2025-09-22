@@ -1,33 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Fixed.hpp                                          :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: achemlal <achemlal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/15 09:40:04 by achemlal          #+#    #+#             */
-/*   Updated: 2025/09/22 08:36:13 by achemlal         ###   ########.fr       */
+/*   Created: 2025/09/22 18:32:11 by achemlal          #+#    #+#             */
+/*   Updated: 2025/09/22 18:33:03 by achemlal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FIXED_HPP
-#define FIXED_HPP
+#include "Point.hpp"
 
-#include <iostream>
-
-class Fixed
+int main()
 {
-    private:
-        int fixed_point;
-        static const int _fracBits = 8;
-    public:
-        Fixed();
-        Fixed(const Fixed& ether);
-        Fixed& operator=(const Fixed& ether);
-        ~Fixed();
-        int getRawBits(void) const;
-        void setRawBits(int raw);
-
-};
-
-#endif 
+    
+}

@@ -29,7 +29,7 @@ $(NAME): $(OBJS)
 	@$(CXX) $(CXXFLAGS) -o $(NAME) $(OBJS)
 	@echo "$(GREEN)Build complete: $(NAME)$(RESET)"
 
-%.o: %.cpp
+%.o: %.cpp Fixed.hpp
 	@echo "$(YELLOW)Compiling $<...$(RESET)"
 	@$(CXX) $(CXXFLAGS) -c $< -o $@
 

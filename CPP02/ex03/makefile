@@ -6,7 +6,7 @@ NAME     = Fixed
 CXX      = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
-SRCS     = main.cpp Fixed.cpp
+SRCS     = main.cpp Fixed.cpp Point.cpp bsp.cpp
 OBJS     = $(SRCS:.cpp=.o)
 
 # =======================
@@ -29,7 +29,7 @@ $(NAME): $(OBJS)
 	@$(CXX) $(CXXFLAGS) -o $(NAME) $(OBJS)
 	@echo "$(GREEN)Build complete: $(NAME)$(RESET)"
 
-%.o: %.cpp	Fixed.hpp
+%.o: %.cpp	Fixed.hpp Point.hpp
 	@echo "$(YELLOW)Compiling $<...$(RESET)"
 	@$(CXX) $(CXXFLAGS) -c $< -o $@
 
