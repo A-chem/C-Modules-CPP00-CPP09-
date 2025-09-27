@@ -6,7 +6,7 @@
 /*   By: achemlal <achemlal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/15 10:38:30 by achemlal          #+#    #+#             */
-/*   Updated: 2025/09/22 09:41:21 by achemlal         ###   ########.fr       */
+/*   Updated: 2025/09/25 11:42:19 by achemlal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ int Fixed::getRawBits(void) const
     std::cout<<"getRawBits member function called"<<std::endl;
     return (this->fixed_point);
 }
+
 void Fixed::setRawBits(int fixed_point)
 {
     this->fixed_point = fixed_point;

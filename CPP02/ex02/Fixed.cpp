@@ -6,7 +6,7 @@
 /*   By: achemlal <achemlal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 14:35:56 by achemlal          #+#    #+#             */
-/*   Updated: 2025/09/22 16:29:14 by achemlal         ###   ########.fr       */
+/*   Updated: 2025/09/24 17:46:22 by achemlal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ Fixed::Fixed() : fixed_point(0){}
 
 Fixed::Fixed(const int i_v)
 {
-        this->fixed_point = i_v * (1 << _fracBits);
+    this->fixed_point = i_v * (1 << _fracBits);
 }
 
 Fixed::Fixed(const float f_v)
@@ -117,7 +117,7 @@ Fixed Fixed::operator*(const Fixed& other) const
 Fixed Fixed::operator/(const Fixed& other) const
 {
     Fixed obj;
-    obj.setRawBits(this->fixed_point / other.fixed_point);
+    obj.setRawBits((this->fixed_point * (1 << _fracBits)) / other.fixed_point);
     return (obj);
 }
 
