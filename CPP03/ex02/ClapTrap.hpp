@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: achemlal <achemlal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/24 13:44:52 by achemlal          #+#    #+#             */
-/*   Updated: 2025/09/24 16:48:06 by achemlal         ###   ########.fr       */
+/*   Created: 2025/09/29 11:00:20 by achemlal          #+#    #+#             */
+/*   Updated: 2025/09/29 11:16:00 by achemlal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,6 @@ class ClapTrap
         void attack(const std::string& target);
         void takeDamage(unsigned int amount);
         void beRepaired(unsigned int amount);
-        
 };
-
 
 #endif 

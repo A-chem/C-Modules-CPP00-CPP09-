@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: achemlal <achemlal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/24 13:45:48 by achemlal          #+#    #+#             */
-/*   Updated: 2025/09/24 17:17:38 by achemlal         ###   ########.fr       */
+/*   Created: 2025/09/29 11:29:57 by achemlal          #+#    #+#             */
+/*   Updated: 2025/09/29 13:35:10 by achemlal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 #include "ClapTrap.hpp"
 
-class ScavTrap : public ClapTrap
+class ScavTrap : virtual public ClapTrap
 {
     public:
         ScavTrap();

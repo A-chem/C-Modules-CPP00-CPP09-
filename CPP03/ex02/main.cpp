@@ -5,35 +5,34 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: achemlal <achemlal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/24 16:22:20 by achemlal          #+#    #+#             */
-/*   Updated: 2025/09/29 10:51:12 by achemlal         ###   ########.fr       */
+/*   Created: 2025/09/29 11:00:30 by achemlal          #+#    #+#             */
+/*   Updated: 2025/09/29 11:20:57 by achemlal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ScavTrap.hpp"
+#include "FragTrap.hpp"
 
 int main() {
-    std::cout << "=== Test: Constructor with parameter ===" << std::endl;
-    ScavTrap scav1("Scav_robot");
+    std::cout << "=== Test: Parameterized Constructor ===" << std::endl;
+    FragTrap frag1("Frag_robot");
 
-    std::cout << "\n=== Test: Default constructor ===" << std::endl;
-    ScavTrap scav2;
+    std::cout << "\n=== Test: Default Constructor ===" << std::endl;
+    FragTrap frag2;
 
-    std::cout << "\n=== Test: Copy constructor ===" << std::endl;
-    ScavTrap scav3(scav1);
+    std::cout << "\n=== Test: Copy Constructor ===" << std::endl;
+    FragTrap frag3(frag1);
 
-    std::cout << "\n=== Test: Copy assignment operator ===" << std::endl;
-    scav2 = scav1;
+    std::cout << "\n=== Test: Copy Assignment Operator ===" << std::endl;
+    frag2 = frag1;
 
-    std::cout << "\n=== Test: Inherited functions ===" << std::endl;
-    scav1.attack("Target1");
-    scav1.takeDamage(30);
-    scav1.beRepaired(20);
+    std::cout << "\n=== Test: Inherited Functions ===" << std::endl;
+    frag1.attack("Target1");
+    frag1.takeDamage(40);
+    frag1.beRepaired(25);
 
-    std::cout << "\n=== Test: ScavTrap special ability ===" << std::endl;
-    scav1.guardGate();
+    std::cout << "\n=== Test: FragTrap Special Ability ===" << std::endl;
+    frag1.highFivesGuys();
 
     std::cout << "\n=== End of main, destructors will be called ===" << std::endl;
     return 0;
 }
-

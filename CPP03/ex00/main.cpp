@@ -13,14 +13,27 @@
 #include "ClapTrap.hpp"
 
 int main() {
-    ClapTrap robot("Bender");
+    std::cout << "=== Test: Constructor with parameter ===" << std::endl;
+    ClapTrap robot1("Sophia");
 
-    robot.attack("Target1");
-    robot.takeDamage(3);
-    robot.beRepaired(5);
-    robot.takeDamage(12);
-    robot.attack("Target2");
-    robot.beRepaired(2);
+    std::cout << "\n=== Test: Default constructor ===" << std::endl;
+    ClapTrap robot2;
 
+    std::cout << "\n=== Test: Copy constructor ===" << std::endl;
+    ClapTrap robot3(robot1);
+
+    std::cout << "\n=== Test: Copy assignment operator ===" << std::endl;
+    robot2 = robot1;
+
+    std::cout << "\n=== Test: Member functions ===" << std::endl;
+    robot1.attack("Target1");
+    robot1.takeDamage(3);
+    robot1.beRepaired(5);
+    robot1.takeDamage(12); 
+    robot1.attack("Target2"); 
+    robot1.beRepaired(2);  
+
+    std::cout << "\n=== End of main, destructors will be called ===" << std::endl;
     return 0;
 }
+

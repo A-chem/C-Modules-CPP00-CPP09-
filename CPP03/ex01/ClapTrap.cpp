@@ -6,20 +6,50 @@
 /*   By: achemlal <achemlal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 13:45:11 by achemlal          #+#    #+#             */
-/*   Updated: 2025/09/24 16:49:20 by achemlal         ###   ########.fr       */
+/*   Updated: 2025/09/29 10:37:09 by achemlal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ClapTrap.hpp"
 
-ClapTrap::ClapTrap(std::string str): name(str), Hit_p(10), energy_p(10), att_dmg(0)
+#include "ClapTrap.hpp"
+
+ClapTrap::ClapTrap() : name("Unnamed"), Hit_p(10), energy_p(10), att_dmg(0)
 {
-    std::cout << "ClapTrap " << name << " constructed!" << std::endl;
+    std::cout << "[Default Constructor] ClapTrap " << name 
+              << " created with 10 HP, 10 EP, 0 DMG." << std::endl;
+}
+
+ClapTrap::ClapTrap(std::string str) : name(str), Hit_p(10), energy_p(10), att_dmg(0)
+{
+    std::cout << "[Parameterized Constructor] ClapTrap " << name 
+              << " created with 10 HP, 10 EP, 0 DMG." << std::endl;
+}
+
+ClapTrap::ClapTrap(const ClapTrap& other)
+{
+    *this = other;
+    std::cout << "[Copy Constructor] ClapTrap " << name 
+              << " copied from another ClapTrap." << std::endl;
+}
+
+ClapTrap& ClapTrap::operator=(const ClapTrap& other)
+{
+    if (this != &other)
+    {
+        this->name = other.name;
+        this->Hit_p = other.Hit_p;
+        this->energy_p = other.energy_p;
+        this->att_dmg = other.att_dmg;
+    }
+    std::cout << "[Copy Assignment] ClapTrap " << this->name 
+              << " assigned from another ClapTrap." << std::endl;
+    return *this;
 }
 
 ClapTrap::~ClapTrap()
 {
-    std::cout << "ClapTrap " << name << " destructed!" << std::endl;
+    std::cout << "[Destructor] ClapTrap " << name << " has been destroyed." << std::endl;
 }
 
 void ClapTrap::attack(const std::string& target)
@@ -58,39 +88,4 @@ void ClapTrap::beRepaired(unsigned int amount)
     Hit_p += amount;
     energy_p--;
     std::cout << "ClapTrap " << name << " repairs itself, regaining "<< amount << " hit points! HP: " << Hit_p << std::endl;
-}
-
-void ClapTrap::setHit_p(int hp)
-{
-    Hit_p = hp;
-}
-
-void ClapTrap::setEnergy_p(int ep)
-{
-    energy_p = ep;
-}
-
-void ClapTrap::setAtt_dmg(int ad)
-{
-    att_dmg = ad;
-}
-
-std::string ClapTrap::getName(void) const
-{
-    return (name); 
-}
-
-int ClapTrap::getHit_p(void) const
-{
-    return (Hit_p);
-}
-
-int ClapTrap::getEnergy_p(void) const
-{
-    return (energy_p);
-}
-
-int ClapTrap::getAtt_dmg(void) const
-{
-    return (att_dmg);
 }
