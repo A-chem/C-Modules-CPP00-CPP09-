@@ -6,7 +6,7 @@
 /*   By: achemlal <achemlal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/29 11:06:00 by achemlal          #+#    #+#             */
-/*   Updated: 2025/09/29 11:18:14 by achemlal         ###   ########.fr       */
+/*   Updated: 2025/10/01 08:40:36 by achemlal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ class FragTrap : public ClapTrap
 {
     public:
         FragTrap();
-        FragTrap(std::string str);
+        FragTrap(const std::string &str);
         FragTrap(const FragTrap& other);
         FragTrap& operator=(const FragTrap& other);
         ~FragTrap();

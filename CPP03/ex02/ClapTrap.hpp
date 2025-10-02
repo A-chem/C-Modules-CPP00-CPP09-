@@ -6,7 +6,7 @@
 /*   By: achemlal <achemlal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/29 11:00:20 by achemlal          #+#    #+#             */
-/*   Updated: 2025/09/29 11:16:00 by achemlal         ###   ########.fr       */
+/*   Updated: 2025/10/01 08:38:18 by achemlal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ class ClapTrap
         unsigned int att_dmg;
     public:
         ClapTrap();
-        ClapTrap(std::string str);
+        ClapTrap(const std::string &str);
         ClapTrap(const ClapTrap& other);
         ClapTrap& operator=(const ClapTrap& other);
         ~ClapTrap();
