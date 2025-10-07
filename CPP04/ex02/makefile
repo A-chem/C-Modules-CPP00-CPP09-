@@ -2,7 +2,7 @@
 #        SETTINGS
 # =======================
 
-NAME     = Polymorphism
+NAME     = Abstract
 CXX      = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 

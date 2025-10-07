@@ -6,67 +6,36 @@
 /*   By: achemlal <achemlal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 17:23:20 by achemlal          #+#    #+#             */
-/*   Updated: 2025/10/03 10:45:16 by achemlal         ###   ########.fr       */
+/*   Updated: 2025/10/06 15:40:12 by achemlal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Cat.hpp"
 #include "Dog.hpp"
-#include "WrongAnimal.hpp"
-#include "WrongCat.hpp"
-#include "Brain.hpp"
-
-void f(){system("leaks Polymorphism");}
+#include "Cat.hpp"
 
 int main() {
-    atexit(f);
-    // const Animal* meta = new Animal();
-    // const Animal* j = new Dog();
-    // const Animal* i = new Cat();
+    int N = 4;
+    const Animal* animals[N];
 
-    // std::cout << j->getType() << " " << std::endl;
-    // std::cout << i->getType() << " " << std::endl; 
-
-    // i->makeSound(); 
-    // j->makeSound(); 
-    // meta->makeSound(); 
-
-    // delete meta;
-    // delete j;
-    // delete i;
-
-    // std::cout << "---- Wrong animals ----\n";
-
-    // const WrongAnimal* wrongMeta = new WrongAnimal();
-    // const WrongAnimal* wrongCat = new WrongCat();
-
-    // std::cout << wrongCat->getType() << " " << std::endl; 
-    // wrongCat->makeSound(); 
-
-    // delete wrongMeta;
-    // delete wrongCat;
-
-    std::cout << "---- Brain ----\n";
-
-    std::string ideas[100];
-    for(int i = 0; i < 100; i++)
-        ideas[i] = "1";
-    Brain *brain = new Brain(ideas);
-    Cat *C = new Cat("Cat", brain);
-
-    Brain *p ; 
-    p  =  C->getBrain();
-    std::string *str ;
-    str = p->getIdeas();
-
-    for(int i = 0; i < 100; i++)
-    {
-        std::cout << str[i]<< "-----" << i << std::endl;
+    for (int i = 0; i < N; ++i) {
+        if (i < N / 2)
+            animals[i] = new Dog();
+        else
+            animals[i] = new Cat();
     }
-    delete C;
-    // delete brain;
-    // delete a;
-    
+
+    std::cout << "\n--- Deleting animals ---\n";
+    for (int i = 0; i < N; ++i)
+        delete animals[i];
+
+    std::cout << "\n--- Testing deep copy ---\n";
+    Dog dog1;
+    dog1.getBrain()->setIdea(0, "Chase the cat!");
+    Dog dog2 = dog1; 
+
+   // dog1.getBrain()->setIdea(0, "Eat a bone!");
+    std::cout << "Dog1 idea: " << dog1.getBrain()->getIdea(0) << "\n";
+    std::cout << "Dog2 idea: " << dog2.getBrain()->getIdea(0) << "\n";
 
     return 0;
 }

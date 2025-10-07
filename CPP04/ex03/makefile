@@ -2,11 +2,11 @@
 #        SETTINGS
 # =======================
 
-NAME     = Polymorphism
+NAME     = Abstract
 CXX      = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
-SRCS     = main.cpp Animal.cpp Dog.cpp Cat.cpp  Brain.cpp
+SRCS     = main.cpp AMateria.cpp Ice.cpp Cure.cpp Character.cpp MateriaSource.cpp
 OBJS     = $(SRCS:.cpp=.o)
 
 # =======================
@@ -29,7 +29,7 @@ $(NAME): $(OBJS)
 	@$(CXX) $(CXXFLAGS) -o $(NAME) $(OBJS)
 	@echo "$(GREEN)Build complete: $(NAME)$(RESET)"
 
-%.o: %.cpp	 Animal.hpp Dog.hpp Cat.hpp WrongAnimal.hpp WrongAnimal.hpp Brain.hpp
+%.o: %.cpp	 AMateria.hpp Ice.hpp Cure.hpp ICharacter.hpp Character.hpp IMateriaSource.hpp MateriaSource.hpp
 	@echo "$(YELLOW)Compiling $<...$(RESET)"
 	@$(CXX) $(CXXFLAGS) -c $< -o $@
 
