@@ -6,7 +6,7 @@
 /*   By: achemlal <achemlal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 17:28:23 by achemlal          #+#    #+#             */
-/*   Updated: 2025/10/07 17:38:48 by achemlal         ###   ########.fr       */
+/*   Updated: 2025/10/08 09:42:26 by achemlal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ class Character : public ICharacter
     private :
         std::string name;
         AMateria* inventory[4];
+        AMateria* in_ads[4];
     public:
         Character();
         Character(std::string const & name);

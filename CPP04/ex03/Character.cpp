@@ -6,23 +6,29 @@
 /*   By: achemlal <achemlal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 18:42:28 by achemlal          #+#    #+#             */
-/*   Updated: 2025/10/07 08:26:24 by achemlal         ###   ########.fr       */
+/*   Updated: 2025/10/08 10:17:11 by achemlal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Character.hpp"
 
-Character::Character() : name("D_name")
+Character::Character() 
 {
     for(int i = 0; i < 4 ; i++)
+    {
         inventory[i] = NULL;
+        in_ads[i] = NULL;
+    }
     std::cout << "[Default Constructor] Character" << std::endl;
 }
 
 Character::Character(std::string const & name): name(name)
 {
     for(int i = 0; i < 4 ; i++)
+    {
         inventory[i] = NULL;
+        in_ads[i] = NULL;
+    }
     std::cout << "[Param Constructor] Character" << std::endl;
 }
 
@@ -61,7 +67,10 @@ Character& Character::operator=(const Character& other)
 Character::~Character()
 {
     for(int i = 0; i < 4; i++)
+    {
         delete inventory[i];
+        delete in_ads[i];
+    }
     std::cout << "[Destructor] Character" << std::endl;
 }
 
@@ -72,7 +81,7 @@ std::string const & Character::getName() const
 
 void Character::equip(AMateria *m)
 {
-    if(!m)
+    if(!m || inventory[3])
         return ;
     for(int i = 0; i < 4; i++)
     {
@@ -88,6 +97,7 @@ void Character::unequip(int idx)
 {
     if (idx < 0 || idx >= 4)
         return;
+    in_ads[idx] = inventory[idx];
     inventory[idx] = NULL;
 }
 
