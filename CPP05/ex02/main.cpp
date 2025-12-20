@@ -1,35 +1,59 @@
-
-
 #include "Bureaucrat.hpp"
+#include "ShrubberyCreationForm.hpp"
+#include "RobotomyRequestForm.hpp"
+#include "PresidentialPardonForm.hpp"
+
 int main()
 {
-
     try
     {
-        std::cout << "=== Creating Bureaucrats ===" << std::endl;
-        Bureaucrat boss("Boss", 1);
-        Bureaucrat worker("Worker", 100);
+        std::cout << "===== CREATE BUREAUCRATS =====" << std::endl;
+        Bureaucrat low(149);
+        Bureaucrat mid(50);
+        Bureaucrat high(1);
 
-        std::cout << boss << std::endl;
-        std::cout << worker << std::endl;
+        std::cout << low << std::endl;
+        std::cout << mid << std::endl;
+        std::cout << high << std::endl;
 
-        std::cout << "\n=== Creating Forms ===" << std::endl;
-        Form secret("SecretForm", 50, 20);
-        Form easy("EasyForm", 120, 100);
+        std::cout << "\n===== CREATE FORMS =====" << std::endl;
+        ShrubberyCreationForm shrub("shurb");
+        RobotomyRequestForm robot("Bender");
+        PresidentialPardonForm pardon("Arthur Dent");
 
-        std::cout << secret << std::endl;
-        std::cout << easy << std::endl;
+        std::cout << shrub << std::endl;
+        std::cout << robot << std::endl;
+        std::cout << pardon << std::endl;
+        std::cout << "\n===== SIGN FORMS =====" << std::endl;
+        low.signForm(shrub);
+        mid.signForm(shrub);
+        high.signForm(shrub);
 
-        std::cout << "\n=== Signing Forms ===" << std::endl;
+        low.signForm(robot);
+        mid.signForm(robot);
+        high.signForm(robot);
 
-        worker.signForm(secret);   
-        boss.signForm(secret);     
-        worker.signForm(easy);   
+        low.signForm(pardon);
+        mid.signForm(pardon);
+        high.signForm(pardon);           
+
+        std::cout << "\n===== EXECUTION =====" << std::endl;
+        low.executeForm(shrub);  
+        mid.executeForm(shrub);
+        high.executeForm(shrub);
+
+        low.executeForm(robot);  
+        mid.executeForm(robot);
+        high.executeForm(robot);
+
+        low.executeForm(pardon);  
+        mid.executeForm(pardon);
+        high.executeForm(pardon);
+
     }
     catch (std::exception &e)
     {
-        std::cout << "Exception caught in main: " << e.what() << std::endl;
+        std::cout << "Exception: " << e.what() << std::endl;
     }
-
     return 0;
 }

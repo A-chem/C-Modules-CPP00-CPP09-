@@ -19,7 +19,7 @@ class AForm
         AForm(const std::string& n, std::string tgt, const int g_s, const int g_ex);
         AForm(const AForm& other);
         AForm& operator=(const AForm& other);
-        ~AForm();
+        virtual ~AForm();
         
         const std::string getName() const;
         std::string getTarget() const;
