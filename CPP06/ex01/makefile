@@ -2,11 +2,11 @@
 #        SETTINGS
 # =======================
 
-NAME     = convert
+NAME     = Serialization
 CXX      = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
-SRCS     = main.cpp ScalarConverter.cpp
+SRCS     = main.cpp Serialization.cpp
 OBJS     = $(SRCS:.cpp=.o)
 
 # =======================
@@ -29,7 +29,7 @@ $(NAME): $(OBJS)
 	@$(CXX) $(CXXFLAGS) -o $(NAME) $(OBJS)
 	@echo "$(GREEN)Build complete: $(NAME)$(RESET)"
 
-%.o: %.cpp	 ScalarConverter.hpp
+%.o: %.cpp	 Serialization.hpp
 	@echo "$(YELLOW)Compiling $<...$(RESET)"
 	@$(CXX) $(CXXFLAGS) -c $< -o $@
 

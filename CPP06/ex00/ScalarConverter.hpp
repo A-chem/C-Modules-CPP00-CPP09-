@@ -7,7 +7,6 @@
 #include <cmath> 
 #include <cstdlib>  
 #include <climits>
-#include <iomanip>
 
 class ScalarConverter
 {

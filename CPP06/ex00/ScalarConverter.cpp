@@ -1,6 +1,18 @@
 #include "ScalarConverter.hpp"
-#include <cstdlib>
 
+ScalarConverter::ScalarConverter() {}
+
+ScalarConverter::ScalarConverter(const ScalarConverter& other   ) {
+    *this = other;
+}
+
+ScalarConverter& ScalarConverter::operator=(const ScalarConverter& other) {
+    if (this != &other)
+        return *this;
+    return *this;
+}
+
+ScalarConverter::~ScalarConverter() {}
 
 static bool isPseudoLiteral(const std::string& literal)
 {
@@ -20,7 +32,7 @@ static double pseudoValue(const std::string& literal) {
 
 static bool isChar(const std::string& literal)
 {
-    return(literal.length() == 3 && literal[0] == '\'' && literal[2] == '\'');
+        return(literal.length() == 1 &&  !std::isdigit(literal[0]));
 }
 
 static bool isInt(const std::string& literal)
@@ -50,7 +62,7 @@ void ScalarConverter::convert(const std::string& literal)
     if (isPseudoLiteral(literal))
         vl = pseudoValue(literal);
     else if (isChar(literal))
-        vl = literal[1];
+        vl = literal[0];
     else if (isInt(literal))
         vl = static_cast<double>(std::strtol(literal.c_str(), NULL, 10));
     else if (isFloat(literal))
@@ -60,33 +72,46 @@ void ScalarConverter::convert(const std::string& literal)
     else 
         throw std::invalid_argument("Invalid literal");
     
+    std::cout << "char: ";
     if (std::isnan(vl) || std::isinf(vl) || vl < 0 || vl > 127)
-        std::cout << "char: impossible\n";
+        std::cout << "impossible\n";
     else if (!isprint(static_cast<char>(vl)))
-        std::cout << "char: Non displayable\n";
+        std::cout << "Non displayable\n";
     else
-        std::cout << "char: '" << static_cast<char>(vl) << "'\n";
+        std::cout << "'" << static_cast<char>(vl) << "'\n";
 
+    std::cout << "int: ";
     if (std::isnan(vl) || std::isinf(vl) || vl > INT_MAX || vl < INT_MIN)
-        std::cout << "int: impossible\n";
+        std::cout << "impossible\n";
     else
-        std::cout << "int: " << static_cast<int>(vl) << "\n";
+        std::cout << static_cast<int>(vl) << "\n";
     
     float f = static_cast<float>(vl);
-        std::cout << std::fixed << std::setprecision(1);
+    std::cout << "float: ";
     if (isnan(f))
-        std::cout << "float: nanf\n";
+        std::cout << "nanf\n";
     else if (isinf(f))
-        std::cout << "float: " << f << "f\n";
+        std::cout << (f > 0 ? "+inff" : "-inff") << "\n";
     else
-        std::cout << "float: " << f << "f\n";
+    {
+        std::cout << f;
+        if(f ==  static_cast<int>(f))
+            std::cout << ".0";
+        std::cout <<  "f\n";
+    }
     
-    std::cout << std::fixed << std::setprecision(1);
+    std::cout << "double: ";
     if (isnan(vl))
-        std::cout << "double: nan\n";
+        std::cout << vl << "\n";
     else if (isinf(vl))
-        std::cout << "double: " << vl << "\n";
+        std::cout <<  vl << "\n";
     else
-        std::cout << "double: " << vl << "\n";
+    {
+        std::cout << vl;
+        if(f ==  static_cast<int>(f))
+            std::cout << ".0";
+        std::cout <<  "\n";
+    }
+   
     
 }
