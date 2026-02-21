@@ -8,9 +8,9 @@ int main()
     try
     {
         std::cout << "===== CREATE BUREAUCRATS =====" << std::endl;
-        Bureaucrat low(149);
-        Bureaucrat mid(50);
-        Bureaucrat high(1);
+        Bureaucrat low("B_1",149);
+        Bureaucrat mid("B_2", 50);
+        Bureaucrat high("B_3", 1);
 
         std::cout << low << std::endl;
         std::cout << mid << std::endl;
@@ -24,10 +24,12 @@ int main()
         std::cout << shrub << std::endl;
         std::cout << robot << std::endl;
         std::cout << pardon << std::endl;
+        
         std::cout << "\n===== SIGN FORMS =====" << std::endl;
         low.signForm(shrub);
         mid.signForm(shrub);
         high.signForm(shrub);
+        
 
         low.signForm(robot);
         mid.signForm(robot);
@@ -35,20 +37,21 @@ int main()
 
         low.signForm(pardon);
         mid.signForm(pardon);
-        high.signForm(pardon);           
+        high.signForm(pardon);    
+             
 
         std::cout << "\n===== EXECUTION =====" << std::endl;
-        low.executeForm(shrub);  
+      /*  low.executeForm(shrub);  
         mid.executeForm(shrub);
-        high.executeForm(shrub);
+        high.executeForm(shrub);*/
 
         low.executeForm(robot);  
         mid.executeForm(robot);
         high.executeForm(robot);
 
-        low.executeForm(pardon);  
+      /*  low.executeForm(pardon);  
         mid.executeForm(pardon);
-        high.executeForm(pardon);
+        high.executeForm(pardon);*/
 
     }
     catch (std::exception &e)

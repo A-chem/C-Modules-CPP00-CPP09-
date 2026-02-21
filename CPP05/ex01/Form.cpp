@@ -12,14 +12,14 @@
 
 #include "Form.hpp"
 
-Form::Form(): name("unkow"), signe(false), grade_s(150), grade_ex(150) {};
+Form::Form(): name("Default_F"), signe(false), grade_s(150), grade_ex(150) {};
 
-Form::Form(const std::string n, const int g_s, const int g_ex) :
-    name(n), grade_s(g_s), grade_ex(g_ex)
-{
-    signe = false;
-    if(grade_s < 1  || grade_ex < 1) throw GradeTooHighException();
-    else if(grade_s > 150  || grade_ex > 150) throw GradeTooLowException();
+Form::Form(const std::string n, int g_s, int g_ex): name(n),
+    signe(false), grade_s(g_s), grade_ex(g_ex){
+    if (g_s < 1 || g_ex < 1)
+        throw GradeTooHighException("Form construction failed: grade above maximum authority");
+    if (g_s > 150 || g_ex > 150)
+        throw GradeTooLowException("Form construction failed: grade below minimum authority");
 }
 
 Form::Form(const Form& other):
@@ -27,9 +27,8 @@ Form::Form(const Form& other):
 
 Form& Form::operator=(const Form& other)
 {
-    if(this == &other)
-        return(*this);
-    this->signe = other.signe;
+    if(this != &other)
+        this->signe = other.signe;
     return (*this);
 }
 
@@ -55,23 +54,26 @@ int Form::getGrade_ex() const
     return(this->grade_ex);
 }
 
+Form::GradeTooHighException::GradeTooHighException(const std::string m) : msg(m){};
+Form::GradeTooHighException::~GradeTooHighException() throw(){};
 const char* Form::GradeTooHighException::what() const throw()
 {
-    return("Grade is too high");
+    return(msg.c_str());
 }
-
+Form::GradeTooLowException::GradeTooLowException(const std::string m) : msg(m){};
+Form::GradeTooLowException::~GradeTooLowException() throw(){};
 const char* Form::GradeTooLowException::what() const throw()
 {
-    return("Grade is too low");
+    return(msg.c_str());
 }
 
 
 void Form::beSigned(const Bureaucrat& obj)
 {
-    if(obj.getGrade() <= grade_s)
+    if (obj.getGrade() <= grade_s)
         signe = true;
     else
-        throw GradeTooLowException();
+        throw GradeTooLowException("Bureaucrat grade too low to sign this form");
 }
 
 std::ostream& operator<<(std::ostream& os, const Form& obj)

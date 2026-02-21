@@ -9,6 +9,8 @@ int main()
     Intern someRandomIntern;
 
     try {
+
+        
         AForm* form1 = someRandomIntern.makeForm("shrubbery_creation", "Home");
         delete form1;
 
@@ -17,7 +19,7 @@ int main()
 
         AForm* form3 = someRandomIntern.makeForm("presidential_pardon", "Alice");
         delete form3;
-
+        
         AForm* form4 = someRandomIntern.makeForm("invalid_form", "Nobody");
         delete form4;
     }

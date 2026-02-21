@@ -10,7 +10,7 @@ class AForm
 {
     private:
         const std::string   name;
-        std::string target;
+        std::string         target;
         bool                signe;
         int const           grade_s;
         int const           grade_ex;
@@ -28,23 +28,35 @@ class AForm
         int getGrade_ex() const;
 
         void beSigned(const Bureaucrat& obj);
-        virtual void execute(Bureaucrat const & obj) = 0;
+        virtual void execute(Bureaucrat const & obj) const = 0;
 
 
         class GradeTooHighException : public std::exception
         {
+            private:
+                const std::string msg;
             public:
+                GradeTooHighException(const std::string m);
+                virtual ~GradeTooHighException() throw();
                 virtual const char* what() const throw();
         };
         class GradeTooLowException : public std::exception
         {
+            private:
+                const std::string msg;
             public:
+                GradeTooLowException(const std::string m);
+                virtual ~GradeTooLowException() throw();
                 virtual const char* what() const throw();
         };
         class FormNotSignedException : public std:: exception
         {
+            private:
+                const std::string msg;
             public:
-                virtual const char * what() const throw();
+                FormNotSignedException(const std::string m);
+                virtual ~FormNotSignedException() throw();
+                virtual const char* what() const throw();
         };
 };
 

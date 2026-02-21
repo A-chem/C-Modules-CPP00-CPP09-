@@ -26,6 +26,12 @@ AForm* Intern::createRobotomyRequestForm(const std::string& target) const {
 AForm* Intern::createPresidentialPardonForm(const std::string& target) const {
     return (new PresidentialPardonForm(target));
 }
+Intern::FormNotFoundException::FormNotFoundException(const std::string m): msg(m){};
+Intern::FormNotFoundException::~FormNotFoundException() throw(){};
+const char* Intern::FormNotFoundException::what() const throw()
+{
+    return (msg.c_str());
+}
 
 AForm* Intern::makeForm(const std::string& name, const std::string& target) const
 {
@@ -34,6 +40,7 @@ AForm* Intern::makeForm(const std::string& name, const std::string& target) cons
         "robotomy_request",
         "presidential_pardon"
     };
+        
 
     AForm* (Intern::*creators[3])(const std::string&) const = {
         &Intern::createShrubberyCreationForm,
@@ -50,5 +57,5 @@ AForm* Intern::makeForm(const std::string& name, const std::string& target) cons
         }
     }
 
-    throw Intern::FormNotFoundException();  
+    throw Intern::FormNotFoundException("Error: form name does not exist");  
 }

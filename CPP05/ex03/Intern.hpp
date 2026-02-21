@@ -23,10 +23,12 @@ class Intern
 
         class FormNotFoundException : public std::exception
         {
+            private:
+                const std::string msg;
             public:
-                const char* what() const throw() {
-                    return "Error: form name does not exist";
-                }
+                FormNotFoundException(const std::string m);
+                ~FormNotFoundException() throw();
+                const char* what() const throw();
         };
 };
 

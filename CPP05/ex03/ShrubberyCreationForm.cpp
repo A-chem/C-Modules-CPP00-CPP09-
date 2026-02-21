@@ -18,16 +18,17 @@ ShrubberyCreationForm& ShrubberyCreationForm::operator=(const ShrubberyCreationF
 
 ShrubberyCreationForm::~ShrubberyCreationForm(){};
 
-void ShrubberyCreationForm::execute(const Bureaucrat& obj)
+void ShrubberyCreationForm::execute(const Bureaucrat& obj) const
 {
-    if(!getSigne())
-        throw FormNotSignedException();
-    if(obj.getGrade() > getGrade_ex())
-        throw GradeTooLowException();
+     if (!getSigne())
+        throw FormNotSignedException("Form must be signed before execution");
 
-    std::ofstream file(getTarget()+ "Shrubbery");
-    if (!file.is_open())
-       throw std::runtime_error("File creation failed!");
+    if (obj.getGrade() > getGrade_ex())
+        throw GradeTooLowException("Executor grade too low");
+
+    std::ofstream file((getTarget() + "_shrubbery").c_str());
+    if (!file)
+        throw std::runtime_error("Failed to create shrubbery file");
 
     file << "   @@@     @@@     @@@\n";
     file << "  @@@@@   @@@@@   @@@@@\n";

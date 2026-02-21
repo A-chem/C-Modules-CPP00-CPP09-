@@ -18,9 +18,9 @@ int main()
     std::cout << "===== VALID CREATION =====" << std::endl;
     try
     {
-        Bureaucrat a("Obj1", 1);
-        Bureaucrat b("Obj2", 150);
-        Bureaucrat c("Obj3", 75);
+        Bureaucrat a("B_1", 1);
+        Bureaucrat b("B_2", 150);
+        Bureaucrat c("B_3", 75);
 
         std::cout << a << std::endl;
         std::cout << b << std::endl;
@@ -34,7 +34,7 @@ int main()
     std::cout << "\n===== INVALID CREATION =====" << std::endl;
     try
     {
-        Bureaucrat d("obj4", 0);
+        Bureaucrat d("B_4", 0);
     }
     catch (std::exception &e)
     {
@@ -43,7 +43,7 @@ int main()
 
     try
     {
-        Bureaucrat e("obj5", 151);
+        Bureaucrat e("B_5", 151);
     }
     catch (std::exception &e)
     {
@@ -53,7 +53,7 @@ int main()
     std::cout << "\n===== INCREMENT TEST =====" << std::endl;
     try
     {
-        Bureaucrat f("obj6", 2);
+        Bureaucrat f("B_6", 2);
         std::cout << f << std::endl;
         f.Increment();
         std::cout << "After increment: " << f << std::endl;
@@ -67,7 +67,7 @@ int main()
     std::cout << "\n===== DECREMENT TEST =====" << std::endl;
     try
     {
-        Bureaucrat g("obj7", 149);
+        Bureaucrat g("B_8", 149);
         std::cout << g << std::endl;
         g.Decrement();
         std::cout << "After decrement: " << g << std::endl;

@@ -19,22 +19,26 @@ RobotomyRequestForm& RobotomyRequestForm::operator=(const RobotomyRequestForm& o
 
 RobotomyRequestForm::~RobotomyRequestForm(){};
 
-void RobotomyRequestForm::execute(const Bureaucrat& obj)
+RobotomyRequestForm::RobotizationFailed::RobotizationFailed(const std::string m): msg(m) {}
+RobotomyRequestForm::RobotizationFailed::~RobotizationFailed() throw() {}
+const char* RobotomyRequestForm::RobotizationFailed::what() const throw()
 {
-    if(!getSigne())
-        throw FormNotSignedException();
-    if(obj.getGrade() > getGrade_ex())
-        throw GradeTooLowException();
+    return (msg.c_str());
+}
+
+void RobotomyRequestForm::execute(const Bureaucrat& obj) const
+{
+    if (!getSigne())
+        throw FormNotSignedException("Form must be signed before execution");
+
+    if (obj.getGrade() > getGrade_ex())
+        throw GradeTooLowException("Executor grade too low");
 
    std::cout << "Brrrrr... zzzzz..." << std::endl;
-   std::srand(std::time(NULL));
+   srand(time(NULL));
    int nbr = rand() % 2;
    if(nbr == 1)
         std::cout << "Target has been robotomized successfully!" << std::endl;
-    else throw RobotizationFailed();
-}
+    else throw RobotizationFailed("Robotomy failed: drilling process unsuccessful.");
 
-const char *RobotomyRequestForm::RobotizationFailed::what() const throw()
-{
-	return ("Robotomy failed!");
 }
