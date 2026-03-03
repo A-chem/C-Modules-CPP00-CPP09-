@@ -2,22 +2,24 @@
 #define SERIALIZATION_HPP
 
 #include <iostream>
-#include <string>
+
+#include <stdint.h>
 
 struct Data
 {
-    int nbr;
-    std::string str;
+    int nb;
+    std::string s;
 };
 
-class Serializer
-{
-private:
-    Serializer(); 
-    ~Serializer(); 
-public:
-    static uintptr_t serialize(Data* ptr);
-    static Data* deserialize(uintptr_t raw);
+class Serializer {
+    private:
+        Serializer();
+        Serializer(const Serializer& copy);
+        Serializer& operator=(const Serializer& rhs);
+        ~Serializer();
+    public:
+        static uintptr_t serialize(Data* ptr);
+        static Data* deserialize(uintptr_t raw);
 };
 
 #endif

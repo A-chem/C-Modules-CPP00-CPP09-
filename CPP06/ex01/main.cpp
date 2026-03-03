@@ -2,28 +2,20 @@
 
 int main()
 {
+    Data d;
+    d.nb = 42;
+    d.s = "Abdilah";
 
-    Data data ;
-    data.nbr = 42;
-    data.str = "Hello 42";
+    std::cout << "Original pointer: " << &d << std::endl;
 
-    std::cout << "Original pointer: " << &data << std::endl;
+    uintptr_t raw = Serializer::serialize(&d);
+    std::cout << "Serialized (uintptr_t): " << raw << std::endl;
 
-    uintptr_t raw = Serializer::serialize(&data);
-    std::cout << "Serialized (uintptr_t): " << raw->nbr << std::endl;
-
-    Data* ptr = Serializer::deserialize(raw);
-    std::cout << "Deserialized pointer: " << ptr << std::endl;
-
-    if (ptr == &data)
-        std::cout << "Serialization and deserialization work!" << std::endl;
-    else
-        std::cout << "Something went wrong!" << std::endl;
-
-    std::cout << "Data content: " << ptr->nbr << ", " << ptr->str << std::endl;
-
- 
     
+    Data* new_ptr = Serializer::deserialize(raw);
+    std::cout << "Deserialized pointer: " << new_ptr << std::endl;
+
+    std::cout << "Value: " << new_ptr->s << ", Name: " << new_ptr->nb << std::endl;
 
     return 0;
 }

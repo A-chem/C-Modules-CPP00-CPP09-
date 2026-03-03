@@ -14,104 +14,172 @@ ScalarConverter& ScalarConverter::operator=(const ScalarConverter& other) {
 
 ScalarConverter::~ScalarConverter() {}
 
-static bool isPseudoLiteral(const std::string& literal)
+
+
+static int isNumeric(const std::string& lt)
 {
-    return(literal == "nan"  || literal == "+inf"  || literal == "-inf" ||
-            literal == "nanf" || literal == "+inff" || literal == "-inff");
+    for(size_t i = 0; i < lt.size(); i++)
+        if(!isdigit(lt[i]) && lt[i] != 'f' && lt[i] != '.' && lt[0] != '-' && lt[0] != '0')
+            return (0);
+    return (1);
 }
 
-static double pseudoValue(const std::string& literal) {
-    if (literal == "nan" || literal == "nanf")
-        return NAN;
-    if (literal == "+inf" || literal == "+inff")
-        return INFINITY;
-    if (literal == "-inf" || literal == "-inff")
-        return -INFINITY;
-    return 0.0; 
+static LiteralType DetectType(const std::string& lt)
+{
+    if (lt.length() == 3 && lt[0] == '\'' && lt[2] == '\'')
+        return CHAR;
+    const std::string arr[] = {"nan", "nanf", "inf", "+inf", "-inf", "inff", "+inff", "-inff"};
+    for(int i = 0; i < 8; i++)
+        if(lt == arr[i])
+            return PSEUDO;
+    if(isNumeric(lt))
+    {
+        if(lt[lt.size() - 1] == 'f' && lt.find('.') != std::string::npos)
+            return FLOAT;
+        if(lt.find('.') != std::string::npos)
+            return DOUBLE;
+        char *endptr;
+        std::strtol(lt.c_str(), &endptr, 10);
+        if(*endptr == '\0')
+            return INT;
+    }
+    return INVALID;
 }
 
-static bool isChar(const std::string& literal)
+static void printFormChar(const std::string& lt)
 {
-        return(literal.length() == 1 &&  !std::isdigit(literal[0]));
+    char c = lt[1];
+    std::cout << "char: '" << c << "'" << std::endl;
+    std::cout << "int: " << static_cast<int>(c) << std::endl;
+    std::cout << "float: " << std::fixed << std::setprecision(1) 
+        << static_cast<float>(c) << "f" << std::endl;
+    std::cout << "double: " << std::fixed << std::setprecision(1)
+        << static_cast<double>(c) << std::endl;
+}
+static void printFormInt(const std::string& lt)
+{
+    errno = 0;
+    long long n = std::strtoll(lt.c_str(), NULL, 10);
+    if( n >= -128 && n <= 127)
+    {
+        if(isprint(static_cast<unsigned char>(n)))
+            std::cout << "char: '" << static_cast<char>(n) << "'" << std::endl;
+        else  std::cout << "char: Non displayable" << std::endl;
+    }
+    else std::cout << "char: impossible" << std::endl;
+    if(errno == ERANGE || n < -2147483648 || n > 2147483647)
+        std::cout << "int: impossible" << std::endl;
+    else std::cout << "int: " << static_cast<int>(n) << std::endl;
+    std::cout << "float: " << std::fixed << std::setprecision(1)
+        << static_cast<float>(n) << "f" << std::endl;
+    std::cout << "double: " << std::fixed << std::setprecision(1)
+        << static_cast<double>(n) << std::endl;
 }
 
-static bool isInt(const std::string& literal)
+static void printFormPseudo(const std::string& lt)
 {
-    size_t i = 0;
-    if(literal[i] == '-' || literal[i] == '+') i++;
-    for(; i < literal.length(); i++)
-        if(!isdigit(literal[i]))
-            return(false);
-    return (true);
+    if (lt == "nanf" || lt == "+inff" || lt == "-inff" ||
+        lt == "nan"  || lt == "+inf"  || lt == "-inf")
+    {
+        std::cout << "char: impossible" << std::endl;
+        std::cout << "int:  impossible" << std::endl;
+
+    }
+    if (lt == "nan" || lt == "nanf")
+	{
+		std::cout << "float: nanf" << std::endl;
+		std::cout << "double: nan" << std::endl;
+		
+	}
+     if (lt == "+inf" || lt == "+inff")
+	{
+		std::cout << "float: +inff" << std::endl;
+		std::cout << "double: +inf" << std::endl;
+	}
+    if (lt == "-inf" || lt == "-inff")
+	{
+		std::cout << "float: -inff" << std::endl;
+		std::cout << "double: -inf" << std::endl;
+	}
 }
 
-static bool isFloat(const std::string& literal)
+static void printFormFloat(const std::string& lt)
 {
-    if (literal[literal.size() - 1] != 'f') return false;
-    return (literal.find('.') != std::string::npos );
+    errno = 0;
+    float f = std::strtof(lt.c_str(), NULL);
+    if( f >= -128 && f <= 127)
+    {
+        if(isprint(static_cast<unsigned char>(f)))
+            std::cout << "char: '" << static_cast<char>(f) << "'" << std::endl;
+        else  std::cout << "char: Non displayable" << std::endl;
+    }
+    else std::cout << "char: impossible" << std::endl;
+    if(f < -2147483648 || f > 2147483647)
+        std::cout << "int: impossible" << std::endl;
+    else std::cout << "int: " << static_cast<int>(f) << std::endl;
+    std::cout << "float: " << std::fixed << std::setprecision(1)
+        << f << "f" << std::endl;
+    std::cout << "double: " << std::fixed << std::setprecision(1)
+        << static_cast<double>(f) << std::endl;
+
+
 }
 
-static bool isDouble(const std::string& literal) 
+static void printFormDouble(const std::string& lt)
 {
-    return (literal.find('.') != std::string::npos && literal[literal.size() - 1] != 'f');
+    errno = 0;
+    float d = std::strtod(lt.c_str(), NULL);
+    if(d >= -128 && d <= 127)
+    {
+        if(isprint(static_cast<unsigned char>(d)))
+            std::cout << "char: '" << static_cast<char>(d) << "'" << std::endl;
+        else  std::cout << "char: Non displayable" << std::endl;
+    }
+    else std::cout << "char: impossible" << std::endl;
+    if(d < -2147483648 || d > 2147483647 )
+        std::cout << "int: impossible" << std::endl;
+    else std::cout << "int: " << static_cast<int>(d) << std::endl;
+    std::cout << "float: " << std::fixed << std::setprecision(1)
+        << static_cast<float>(d) << "f" << std::endl;
+    std::cout << "double: " << std::fixed << std::setprecision(1)
+        << d << std::endl;   
 }
 void ScalarConverter::convert(const std::string& literal)
 {
-    double vl;
-    
-    if (isPseudoLiteral(literal))
-        vl = pseudoValue(literal);
-    else if (isChar(literal))
-        vl = literal[0];
-    else if (isInt(literal))
-        vl = static_cast<double>(std::strtol(literal.c_str(), NULL, 10));
-    else if (isFloat(literal))
-        vl = static_cast<double>(std::strtof(literal.c_str(), NULL));
-    else if (isDouble(literal))
-        vl = std::strtod(literal.c_str(), NULL);
-    else 
-        throw std::invalid_argument("Invalid literal");
-    
-    std::cout << "char: ";
-    if (std::isnan(vl) || std::isinf(vl) || vl < 0 || vl > 127)
-        std::cout << "impossible\n";
-    else if (!isprint(static_cast<char>(vl)))
-        std::cout << "Non displayable\n";
-    else
-        std::cout << "'" << static_cast<char>(vl) << "'\n";
-
-    std::cout << "int: ";
-    if (std::isnan(vl) || std::isinf(vl) || vl > INT_MAX || vl < INT_MIN)
-        std::cout << "impossible\n";
-    else
-        std::cout << static_cast<int>(vl) << "\n";
-    
-    float f = static_cast<float>(vl);
-    std::cout << "float: ";
-    if (isnan(f))
-        std::cout << "nanf\n";
-    else if (isinf(f))
-        std::cout << (f > 0 ? "+inff" : "-inff") << "\n";
-    else
+    LiteralType type = DetectType(literal);
+    switch (type)
     {
-        std::cout << f;
-        if(f ==  static_cast<int>(f))
-            std::cout << ".0";
-        std::cout <<  "f\n";
-    }
-    
-    std::cout << "double: ";
-    if (isnan(vl))
-        std::cout << vl << "\n";
-    else if (isinf(vl))
-        std::cout <<  vl << "\n";
-    else
+    case CHAR:
     {
-        std::cout << vl;
-        if(f ==  static_cast<int>(f))
-            std::cout << ".0";
-        std::cout <<  "\n";
+        printFormChar(literal);
+        break;
     }
-   
-    
+    case INT:
+    {
+       printFormInt(literal);
+       break;
+    }
+    case FLOAT:
+    {
+        printFormFloat(literal);
+        break;
+    }
+    case DOUBLE:
+    {
+        printFormDouble(literal);
+        break;
+    }
+    case  PSEUDO:
+    {
+        printFormPseudo(literal);
+        break;
+    }
+    case INVALID:
+    {
+        throw std::runtime_error("Invalid Argument");
+        break;
+    }
+    default:
+        break;
+    }
 }
