@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: achemlal <achemlal@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/03/05 22:32:57 by achemlal          #+#    #+#             */
+/*   Updated: 2026/03/05 22:32:58 by achemlal         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <iostream>
 #include "Array.hpp"
 
@@ -16,9 +28,9 @@ int main(int, char**)
     //SCOPE
     {
         Array<int> tmp = numbers;
-        Array<int> test(tmp);
+       Array<int> test(tmp);
     }
-/*
+
     for (int i = 0; i < MAX_VAL; i++)
     {
         if (mirror[i] != numbers[i])
@@ -48,6 +60,6 @@ int main(int, char**)
     {
         numbers[i] = rand();
     }
-    delete [] mirror;//*/
+    delete [] mirror;//
     return 0;
 }

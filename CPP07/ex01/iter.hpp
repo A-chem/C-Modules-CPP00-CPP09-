@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   iter.hpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: achemlal <achemlal@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/03/05 22:32:43 by achemlal          #+#    #+#             */
+/*   Updated: 2026/03/05 22:32:44 by achemlal         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef ITER_HPP
 #define ITER_HPP
 
@@ -10,12 +22,12 @@ void print(T& a)
 }
 
 template <typename T>
-void iter(T* arr,  size_t len, void (*f)(T&))
+void iter(T* arr,  const size_t len, void (*f)(T&))
 {
+    if(!arr)
+        return ;
     for(size_t i = 0; i < len; i++)
-    {
-        (*f)(arr[i]);
-    }
+        f(arr[i]);
 }
 
 #endif
